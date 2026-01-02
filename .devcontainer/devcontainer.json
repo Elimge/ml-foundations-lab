@@ -1,0 +1,33 @@
+{
+	"name": "ML Workbench Belabs",
+	// Use the existing docker-compose file
+	"dockerComposeFile": [
+		"../docker-compose.yml" 
+	],
+	// Service to start from docker-compose file
+	"service": "ml_workbench",
+	// Where to open the workspace once inside the container
+	"workspaceFolder": "/app",
+
+	// Settings and extensions to install in the container
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"python.defaultInterpreterPath": "/usr/local/bin/python"
+			},
+			// Extensions 
+			"extensions": [
+				"ms-python.python",
+				"ms-toolsai.jupyter",
+				"ms-azuretools.vscode-docker",
+				"njpwerner.autodocstring" 
+			]
+		}
+	},
+
+	// Commands post-creation
+	"postCreateCommand": "pip list",
+
+	// Remote user (root or vscode, we use root because our base image is simple)
+	"remoteUser": "root"
+}

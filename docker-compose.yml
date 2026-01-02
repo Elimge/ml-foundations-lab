@@ -1,0 +1,49 @@
+version: '3.9'
+
+# Define the services (containers) of the application
+services:
+  ml_workbench:
+    # The 'build' tells Docker Compose to use the Dockerfile in the './docker/' folder
+    build: 
+      context: . # Looks for the Dockerfile in the project root
+      dockerfile: docker/Dockerfile 
+      args: # Can pass variables to the Dockerfile if needed (e.g.: VERSION=latest)
+        ARG_EXAMPLE: "example_value" 
+        
+    container_name: ml_workbench_container # An easy-to-identify name
+    
+    # Volume mapping: Connects directories from the PC with directories inside the container.
+    volumes:
+      # Mount the local 'data' folder inside the container '/app/data'
+      - ./data:/app/data
+      # Mount the local 'notebooks' folder inside the container '/app/notebooks'
+      - ./notebooks:/app/notebooks
+      # Mount the local 'src' folder inside the container '/app/src'
+      - ./src:/app/src
+      # Mount the .env file 
+      # - ./.env:/app/.env
+      
+    # Port mapping: To access services running inside the container from your PC
+    ports:
+      - "8888:8888" # Port for Jupyter Lab (default)
+      # - "8000:8000" # If the FastAPI was running here
+
+    # Command to execute when starting the container
+    # Here we launch JupyterLab so we can start experimenting
+    command: >
+      jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root
+
+    # Resource configuration (optional but recommended to limit consumption)
+    # resources:
+    #   limits:
+    #     cpus: '2' # Limit to 2 CPU cores
+    #     memory: 4G # Limit to 4GB of RAM
+
+    # Networks: Connect this container to a network.
+    networks:
+      - ml_network
+
+# Definition of the network that the containers will use
+networks:
+  ml_network:
+    driver: bridge
