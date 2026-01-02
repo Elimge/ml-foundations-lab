@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.py[cod]
+venv/
+.env
+
+# Jupyter
+.ipynb_checkpoints
+
+# Data
+data/
+!data/.gitkeep
+
+# Docker
+.docker_data/
