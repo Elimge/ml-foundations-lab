@@ -10,6 +10,9 @@ venv/
 # Data
 data/
 !data/.gitkeep
+data/MNIST/
+data/raw/
+data/processed/
 
 # Docker
 .docker_data/

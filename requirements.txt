@@ -10,6 +10,7 @@ scikit-learn==1.5.0
 # Llama 3 concepts (Classic models)
 transformers==4.42.4 
 torch==2.3.1 
+torchvision==0.18.1
 
 # Notebooks & EDA
 jupyterlab==4.1.5
