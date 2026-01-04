@@ -16,3 +16,6 @@ data/processed/
 
 # Docker
 .docker_data/
+
+# Documentation
+BITACORA_TECNICA.md
